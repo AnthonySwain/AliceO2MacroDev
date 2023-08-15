@@ -5,7 +5,7 @@
 
 
 extern int pdgs[8];
-extern const char* detectors[12];
+extern const char* detectors[11];
 extern int numb_bins[3];
 extern float min_values[3];
 extern float max_values[3];

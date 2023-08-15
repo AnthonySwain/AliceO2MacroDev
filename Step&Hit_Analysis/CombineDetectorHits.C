@@ -23,12 +23,12 @@ void CombineDetectorHits(){
     //Iterates through all the detectors (see global file) and also through the particles saved (also see global file)
     //Adding all the histograms together      
     for (int i =0; i<sizeof(detectors)/sizeof(const char*); i++)
-    {
+    {   std::cout << detectors[i] << std::endl;
         file->GetObject(detectors[i],list);
         std::cout<<i<<std::endl;
         for (int j=0; j< sizeof(pdgs)/sizeof(int);j++)
         {   
-            //std::cout << pdgs[j] << std::endl;
+            std::cout << pdgs[j] << std::endl;    
             hist = (TH3I*)list->FindObject((std::to_string(pdgs[j])).c_str());
             combinedHits->Add(hist);
             
