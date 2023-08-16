@@ -21,7 +21,7 @@ R__ADD_INCLUDE_PATH($VECGEOM_ROOT/include)
 
 
 void HashMapIntoTxtFile(){
-  /*This is in development. It currently does not work:( */
+  /*This is in development. */
 std::unique_ptr<vecgeom::FlatVoxelHashMap<bool,true>> VoxelMap;
 
 int NumbBins[3] = {200,200,600}; 

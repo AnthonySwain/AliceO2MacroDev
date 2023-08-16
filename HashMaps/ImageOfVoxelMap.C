@@ -1,3 +1,5 @@
+/* Creates projections/images of a voxel map from its root file */
+
 #if defined(__linux__)
 R__ADD_INCLUDE_PATH($VECGEOM_ROOT/../../Vc/latest/include)
 #endif

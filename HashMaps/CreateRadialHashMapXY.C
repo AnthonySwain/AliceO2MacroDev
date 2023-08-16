@@ -1,3 +1,4 @@
+/* Creates a voxel map where every voxel past a certain radius (center =0,0,0) is set to true */
 #if defined(__linux__)
 R__ADD_INCLUDE_PATH($VECGEOM_ROOT/../../Vc/latest/include)
 #endif
@@ -105,13 +106,13 @@ for (float radius = minRadius; radius < sqrt(2)*Xmax ; radius += delta_X/2){
 
 
 
-//create the circular layers
+//create the circular layers 
+//Overloaded so Zmin and Zmax can be specified:) 
 void CreateRadialHashMapXY(string SaveMapLoc, int Nx, int Ny, int Nz, float minRadius){
     /* Creates radial hashmaps in the XY direction
     SaveMapLoc = where to save the resulting map (include .root)
     Nx, Ny, Nz = Number of bins in the X,Y,Z directions respectively
     minRadius = minimum radius to start creating black holes (i.e. everything outside of this radius will be a blackhole)*/
-    
     
     vecgeom::Vector3D<float> MinValues(-1000,-1000,-3000);
     vecgeom::Vector3D<float> Lengths(2000,2000,6000);
@@ -121,6 +122,33 @@ void CreateRadialHashMapXY(string SaveMapLoc, int Nx, int Ny, int Nz, float minR
     
     CreateCircularLayersXYplane(VoxelMap.get(), Nx, Ny, Nz, minRadius,
     MinValues[0],MinValues[1],MinValues[2], MinValues[0]+Lengths[0],MinValues[1]+Lengths[1],MinValues[2]+Lengths[2]);
+
+    VoxelMap->dumpToTFile(SaveMapLoc.c_str());
+
+}
+
+
+
+//create the circular layers
+//Overloaded so Zmin and Zmax can be specified:) 
+void CreateRadialHashMapXY(string SaveMapLoc, int Nx, int Ny, int Nz, float minRadius, float Zmin, float Zmax){
+    /* 
+    Creates radial hashmaps in the XY direction
+    SaveMapLoc = where to save the resulting map (include .root)
+    Nx, Ny, Nz = Number of bins in the X,Y,Z directions respectively
+    minRadius = minimum radius to start creating black holes (i.e. everything outside of this radius will be a blackhole)
+    Zmin/Zmax - extent in the Z direction (beam axis)
+    */
+    
+  
+    vecgeom::Vector3D<float> MinValues(-1000,-1000,-3000);
+    vecgeom::Vector3D<float> Lengths(2000,2000,6000);
+    int NumbBins[3] = {Nx,Ny,Nz};
+
+    std::unique_ptr<vecgeom::FlatVoxelHashMap<bool,true>>VoxelMap = std::make_unique<vecgeom::FlatVoxelHashMap<bool,true>>(MinValues, Lengths, NumbBins[0],NumbBins[1],NumbBins[2]); 
+    
+    CreateCircularLayersXYplane(VoxelMap.get(), Nx, Ny, Nz, minRadius,
+    MinValues[0],MinValues[1],Zmin, MinValues[0]+Lengths[0],MinValues[01]+Lengths[1],Zmax);
 
     VoxelMap->dumpToTFile(SaveMapLoc.c_str());
 
