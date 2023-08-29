@@ -56,7 +56,7 @@ void ProjectionHistogram(string projectionaxis, TH3I* hist, string savename){
     projection->GetYaxis()->SetTitleOffset(1.2);
     //projection->GetZaxis()->SetTitleOffset(1.4);
     //projection ->GetZaxis()->SetTitle("count");
-    projection ->Draw("");
+    projection ->Draw("col");
 
     c3->SetRightMargin(0.10);
     c3->SetLeftMargin(0.10);

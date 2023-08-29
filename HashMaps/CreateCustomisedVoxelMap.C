@@ -161,12 +161,12 @@ void BinaryListToMapping(vecgeom::FlatVoxelHashMap<P, ScalarProperties>* VoxelMa
 void CreateCustomisedVoxelMap(){
 
     //SaveLocation and name
-    string SaveMapLoc = "HashMap.root" ;
+    string SaveMapLoc = "150.root" ;
     
     //Number of Bins
-    int Nx = 199;
-    int Ny = 199;
-    int Nz = 599;
+    int Nx = 200;
+    int Ny = 200;
+    int Nz = 600;
 
     //Min Values of the Voxel Map
     float MinX = -1000;
@@ -179,18 +179,17 @@ void CreateCustomisedVoxelMap(){
     float MaxZ = 3000;
 
 
-    //Hopefully pass the values here from config:) (or infer from the lenngth of the list of binary digits?)
     vecgeom::Vector3D<float> MinValues(MinX,MinY,MinZ);
     vecgeom::Vector3D<float> Lengths(MaxX-MinX,MaxY-MinY,MaxZ-MinZ);
     int NumbBins[3] = {Nx,Ny,Nz};
     std::unique_ptr<vecgeom::FlatVoxelHashMap<bool,true>>VoxelMap = std::make_unique<vecgeom::FlatVoxelHashMap<bool,true>>(MinValues, Lengths, NumbBins[0],NumbBins[1],NumbBins[2]); 
     
-    AssignVoxelTrue(VoxelMap.get(),0.0 , 0.0, 0.0);
+
     
     //CreateCircularLayersXYplane(VoxelMap.get(), Nx, Ny, Nz, minRadius,
     //MinValues[0],MinValues[1],MinValues[2], MinValues[0]+Lengths[0],MinValues[1]+Lengths[1],MinValues[2]+Lengths[2]);
     
-    //BuildWallXZplane(VoxelMap.get(), 150, 30, MinValues[0], MinValues[0]+Lengths[0], MinValues[2], MinValues[2]+Lengths[2], Nx,Nz);
+    BuildWallXZplane(VoxelMap.get(), 150, 150, MinValues[0], MinValues[0]+Lengths[0], MinValues[2], MinValues[2]+Lengths[2], Nx,Nz);
     
     VoxelMap->dumpToTFile(SaveMapLoc.c_str());
 

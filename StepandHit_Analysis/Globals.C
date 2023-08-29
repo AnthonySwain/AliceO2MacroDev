@@ -10,10 +10,10 @@ const char* detectors[11] = {"ITSHit","MFTHit","TOFHit","EMCHit","PHSHit","CPVHi
     "FV0Hit","FDDHit","HMPHit", "MCHHit", "MIDHit"};// "ZDCHit"};
 
 //Number of bins in the histograms
-int numb_bins[3] = {100,100,100};
+int numb_bins[3] = {100,100,300};
 
 //Min values of the histograms
-float min_values[3] = {-1000,-1000,-3000};
+float min_values[3] = {-1000,-1000,-13000};
 
 //Max values of the histograms
-float max_values[3] = {1000,1000,3000};
+float max_values[3] = {1000,1000,13000};
