@@ -6,6 +6,8 @@
 #include <filesystem>
 #include "Globals.h" //Get global variables for all macros
 
+
+
 void CombineDetectorHits(){
     /*
     Macro that combines all the detectors hits together into one 3D histogram, also combining the different particle types
@@ -15,15 +17,15 @@ void CombineDetectorHits(){
     TList* list;
     TH3I* hist;
 
-    TH3I* combinedHits = new TH3I("CombinedHistList", "AllParticleHits",
+    TH3F* combinedHits = new TH3F("CombinedHistList", "AllParticleHits",
     numb_bins[0],min_values[0],max_values[0],
     numb_bins[1],min_values[1],max_values[1],
     numb_bins[2],min_values[2],max_values[2]);
     
     //Iterates through all the detectors (see global file) and also through the particles saved (also see global file)
     //Adding all the histograms together      
-    for (int i =0; i<sizeof(detectors)/sizeof(const char*); i++)
-    {   std::cout << detectors[i] << std::endl;
+    for (int i =0; i<sizeof(detectors)/sizeof(const char*); i++){
+        unstd::cout << detectors[i] << std::endl;
         file->GetObject(detectors[i],list);
         std::cout<<i<<std::endl;
         for (int j=0; j< sizeof(pdgs)/sizeof(int);j++)
@@ -33,6 +35,7 @@ void CombineDetectorHits(){
             combinedHits->Add(hist);
             
         }
+
     }
 
     //Include TPC Detector
