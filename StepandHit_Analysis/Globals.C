@@ -6,11 +6,11 @@
 int pdgs[8] = {11, 13, -11, -13, 22, 111, 211, -211};
 
 //The detectors to be used in histogram analysis
-const char* detectors[11] = {"ITSHit","MFTHit","TOFHit","EMCHit","PHSHit","CPVHit",/*"FT0Hit",*/
-    "FV0Hit","FDDHit","HMPHit", "MCHHit", "MIDHit"};// "ZDCHit"};
+const char* detectors[12] = {"ITSHit","MFTHit","TOFHit","EMCHit","PHSHit","CPVHit",/*"FT0Hit",*/
+    "FV0Hit","FDDHit","HMPHit", "MCHHit", "MIDHit", "ZDCHit"};
 
 //Number of bins in the histograms
-int numb_bins[3] = {100,100,300};
+int numb_bins[3] = {200,200,500};
 
 //Min values of the histograms
 float min_values[3] = {-1000,-1000,-13000};
