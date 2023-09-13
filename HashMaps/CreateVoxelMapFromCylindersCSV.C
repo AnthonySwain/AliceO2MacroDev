@@ -176,7 +176,7 @@ std::vector<std::string> splitString(const std::string &s, char delimiter) {
 
 
 //Creates voxel map from a CSV of cylinders.
-void CreateRadialHashMapXY(string SaveMapLoc, int Nx, int Ny, int Nz, float minRadius, string cylinder_csv_filepath){
+void CreateVoxelMapFromCylindersCSV(string SaveMapLoc, int Nx, int Ny, int Nz, float minRadius, string cylinder_csv_filepath){
     /* 
     Creates radial hashmaps in the XY direction
     SaveMapLoc = where to save the resulting map (include .root)
