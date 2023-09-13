@@ -114,6 +114,18 @@ struct Cylinder_Data {
       std::vector<int> PDGs;
       };
 
+std::vector<std::string> splitString(const std::string &s, char delimiter) {
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(s);
+    
+    while (std::getline(tokenStream, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    
+    return tokens;
+}
+
 Cylinder_Data parseCSVLine(const std::string &line) {
     Cylinder_Data entry;
     std::vector<std::string> tokens = splitString(line, ',');
@@ -141,17 +153,7 @@ Cylinder_Data parseCSVLine(const std::string &line) {
 
 
 
-std::vector<std::string> splitString(const std::string &s, char delimiter) {
-    std::vector<std::string> tokens;
-    std::string token;
-    std::istringstream tokenStream(s);
-    
-    while (std::getline(tokenStream, token, delimiter)) {
-        tokens.push_back(token);
-    }
-    
-    return tokens;
-}
+
 
 std::vector<Cylinder_Data> readCSVFileCylinderCuts(const std::string &filename) {
     std::vector<Cylinder_Data> dataEntries;
