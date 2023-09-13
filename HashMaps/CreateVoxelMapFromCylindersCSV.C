@@ -114,26 +114,6 @@ struct Cylinder_Data {
       std::vector<int> PDGs;
       };
 
-
-std::vector<Cylinder_Data> readCSVFileCylinderCuts(const std::string &filename) {
-    std::vector<Cylinder_Data> dataEntries;
-    std::ifstream file(filename);
-    std::string line;
-    
-    if (!file.is_open()) {
-        std::cerr << "Failed to open file: " << filename << std::endl;
-        return dataEntries;
-    }
-    
-    while (std::getline(file, line)) {
-        dataEntries.push_back(parseCSVLine(line));
-    }
-    
-    file.close();
-    return dataEntries;
-}
-
-
 Cylinder_Data parseCSVLine(const std::string &line) {
     Cylinder_Data entry;
     std::vector<std::string> tokens = splitString(line, ',');
@@ -172,6 +152,27 @@ std::vector<std::string> splitString(const std::string &s, char delimiter) {
     
     return tokens;
 }
+
+std::vector<Cylinder_Data> readCSVFileCylinderCuts(const std::string &filename) {
+    std::vector<Cylinder_Data> dataEntries;
+    std::ifstream file(filename);
+    std::string line;
+    
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filename << std::endl;
+        return dataEntries;
+    }
+    
+    while (std::getline(file, line)) {
+        dataEntries.push_back(parseCSVLine(line));
+    }
+    
+    file.close();
+    return dataEntries;
+}
+
+
+
 
 
 
